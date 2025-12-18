@@ -1,5 +1,5 @@
 <template>
-    <button :class="buttonClasses">
+    <button :class="buttonClasses" @click="emit('on-click')" :disabled="isLoading">
         <span v-if="isLoading">Loading...</span>
         <slot v-else />
     </button>
@@ -34,4 +34,6 @@ const buttonClasses = computed(() => {
 
     return [base, variants[props.variant]];
 });
+
+const emit = defineEmits(['on-click'])
 </script>

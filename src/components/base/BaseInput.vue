@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { PropType } from 'vue'
-const model = defineModel()
+const model = defineModel<string>({ required: true });
 const props = defineProps({
     type: {
         type: String as PropType<'text' | 'email' | 'password'>,
@@ -23,10 +23,6 @@ const props = defineProps({
     required: {
         type: Boolean,
         default: false
-    },
-    modelValue: {
-        type: String,
-        required: true
     },
     placeholder: {
         type: String
