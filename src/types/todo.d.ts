@@ -1,5 +1,5 @@
 export interface TodoType {
-    id: number
+    id: string
     createdAt: number
     title: string
     status: boolean

@@ -7,7 +7,7 @@
             {{ label }}
         </span>
         <input :type="type" :name="type" :class=inputClasses :placeholder="placeholder" v-model="model"
-            :required="required" />
+            :required="required" @change="emit('on-change')" />
         <p v-if="error" class="text-red-500 text-sm mt-1">{{ error }}</p>
     </label>
 </template>
@@ -44,4 +44,6 @@ const inputClasses = computed(() => {
 
     return [baseClasses, props.error ? errorClasses : normalClasses];
 });
+
+const emit = defineEmits(['on-change'])
 </script>
