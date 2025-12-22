@@ -48,7 +48,6 @@ export const useTodoStore = defineStore('todo', () => {
         const todo = todos.value.find(t => t.id === id);
         if (todo) {
             try {
-                console.log(todo)
                 await todoApi.editTodo(id, { status: todo.status });
             } catch (error) {
                 throw error

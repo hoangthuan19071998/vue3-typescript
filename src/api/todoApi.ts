@@ -29,7 +29,6 @@ async function deleteTodo(id: string) {
 async function editTodo(id: string, todo: Partial<TodoType>) {
     try {
         const res = await http.put<any, TodoType>(`/todos/${id}`, todo);
-        console.log(res)
         return res;
     } catch (err) {
         console.log(2222)
