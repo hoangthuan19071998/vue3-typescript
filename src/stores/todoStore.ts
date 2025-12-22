@@ -83,7 +83,8 @@ export const useTodoStore = defineStore('todo',
     },
     {
         persist: {
-            paths: ['filter', 'todos'] // Chỉ lưu những state này
+            paths: ['filter', 'todos'], // Chỉ lưu những state này
+            storage: localStorage
         }
     }
 )
