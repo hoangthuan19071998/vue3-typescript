@@ -9,8 +9,7 @@ async function getAllTodos() {
     }
 }
 
-async function addNewTodo(newTodo: TodoType) {
-
+async function addNewTodo(newTodo: Omit<TodoType, 'id'>) {
     try {
         const res: TodoType = await http.post<any, TodoType>('/todos', newTodo);
         return res;
