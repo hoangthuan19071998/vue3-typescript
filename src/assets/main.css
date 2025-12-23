@@ -11,6 +11,10 @@
         /* Đen than */
         --primary: 59 130 246;
         /* Xanh dương */
+        --surface: 248 250 252;
+        /* Màu Slate-50 cho nền thẻ */
+        --border: 226 232 240;
+        /* Màu Slate-200 cho đường viền */
     }
 
     .dark {
@@ -21,5 +25,9 @@
         /* Trắng */
         --primary: 96 165 250;
         /* Xanh nhạt hơn */
+        --surface: 30 41 59;
+        /* Màu Slate-800 cho nền thẻ */
+        --border: 51 65 85;
+        /* Màu Slate-700 */
     }
 }

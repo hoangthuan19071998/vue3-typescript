@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { watchEffect } from 'vue';
 import { RouterView } from 'vue-router';
 import DefaultLayout from './layouts/DefaultLayout.vue';
 import { useLocalStorage } from './composables/useLocalStorage';
@@ -9,15 +8,7 @@ const theme = useLocalStorage('theme', 'light')
 const toggleTheme = () => {
   theme.value = theme.value === 'light' ? 'dark' : 'light';
 }
-watchEffect(() => {
-  if (theme.value === 'dark') {
-    document.body.classList.add('bg-gray-900', 'text-white'); // Class ví dụ của Tailwind
-    document.body.classList.remove('bg-gray-50');
-  } else {
-    document.body.classList.remove('bg-gray-900', 'text-white');
-    document.body.classList.add('bg-gray-50');
-  }
-});
+
 </script>
 
 <template>

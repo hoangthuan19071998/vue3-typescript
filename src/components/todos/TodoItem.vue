@@ -21,9 +21,10 @@ const props = defineProps({
 const emit = defineEmits(['confirm-delete'])
 </script>
 <template>
-    <li class="group flex items-center justify-between p-5 hover:bg-slate-50 transition-colors duration-200">
+    <li
+        class="group flex items-center justify-between p-5 hover:bg-surface transition-colors duration-200 border-b border-border last:border-0">
         <BaseCheckbox v-model="model" :id="props.todoId" :label="props.title" @on-change="toggleTodo(props.todoId)"
-            :label-classes="['flex items-center gap-4', model ? 'text-slate-400 line-through' : 'text-slate-700']" />
+            :label-classes="['flex items-center gap-4', model ? 'text-foreground/50 line-through' : 'text-foreground']" />
         <BaseButton variant="danger" @on-click="emit('confirm-delete', props.todoId)">Delete</BaseButton>
     </li>
 </template>
