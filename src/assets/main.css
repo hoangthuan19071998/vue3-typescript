@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        /* Màu cho Light Mode */
+        --background: 255 255 255;
+        /* Trắng */
+        --foreground: 15 23 42;
+        /* Đen than */
+        --primary: 59 130 246;
+        /* Xanh dương */
+    }
+
+    .dark {
+        /* Màu cho Dark Mode (tự động đổi khi class .dark xuất hiện) */
+        --background: 15 23 42;
+        /* Đen than */
+        --foreground: 255 255 255;
+        /* Trắng */
+        --primary: 96 165 250;
+        /* Xanh nhạt hơn */
+    }
+}
