@@ -21,6 +21,7 @@ const setupStore = () => {
         isLoading.value = true;
         try {
             todos.value = await todoApi.getAllTodos();
+            console.log(todos.value)
         } catch (error) {
             console.error(error);
         } finally {
@@ -46,12 +47,15 @@ const setupStore = () => {
     };
 
     const toggleTodo = async (id: string) => {
-        const todo = todos.value.find(t => t.id === id);
-        if (todo) {
-            try {
-                await todoApi.editTodo(id, { status: todo.status });
+        const prev = [...todos.value];
+        const todo = todos.value.find(t => t.todoId === id);
 
+        if (todo) {
+            const todoId = todo.id
+            try {
+                await todoApi.editTodo(todoId, { status: todo.status });
             } catch (error) {
+                todos.value = prev; // Rollback
                 throw error
             }
         } else {
@@ -63,13 +67,21 @@ const setupStore = () => {
     const deleteTodo = async (id: string) => {
         // Optimistic Update
         const prev = [...todos.value];
-        todos.value = todos.value.filter(t => t.id !== id);
-        try {
-            await todoApi.deleteTodo(id);
-        } catch (error) {
-            todos.value = prev; // Rollback
-            throw error
+
+        const todo = todos.value.find(t => t.todoId === id);
+        if (todo) {
+            todos.value = todos.value.filter(t => t.todoId !== id);
+            const todoId = todo.id
+            try {
+                await todoApi.deleteTodo(todoId);
+            } catch (error) {
+                todos.value = prev; // Rollback
+                throw error
+            }
+        } {
+            throw ('Can\'t find todo,please try later ')
         }
+
     };
     return {
         todos,

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import BaseInput from '../components/base/BaseInput.vue';
 import BaseButton from '../components/base/BaseButton.vue';
-import BaseCheckbox from '../components/base/BaseCheckbox.vue';
 import BaseModal from '../components/base/BaseModal.vue';
 import TodoItem from '../components/todos/TodoItem.vue';
 import { storeToRefs } from 'pinia';
@@ -19,6 +18,7 @@ const isModalOpen = ref(false)
 const deleteItemId = ref('')
 onMounted(() => {
     fetchTodos()
+    console.log(filteredTodos)
 })
 
 const handleAddTitle = async () => {
@@ -67,18 +67,13 @@ const executeDelete = () => {
         <span class="text-slate-600 font-medium text-sm">Loading...</span>
     </div>
 
-    <ul v-else
-        class="w-full max-w-3xl mx-auto m-5 bg-white rounded-xl shadow-lg border border-slate-100 divide-y divide-slate-100 overflow-hidden">
 
-        <TodoItem v-for="todo in filteredTodos" :key="todo.todoId" :todoId="todo.todoId" :status="todo.status"
+    <TransitionGroup v-else name="list" tag="ul" class="space-y-2">
+
+        <TodoItem v-for="todo in filteredTodos" :key="todo.todoId" :todoId="todo.todoId" :v-model="todo.status"
             :title="todo.title" @confirm-delete="confirmDelete" />
-        <!-- <li class=" group flex items-center justify-between p-5 hover:bg-slate-50 transition-colors duration-200">
-            <BaseCheckbox v-model="todo.status" :id="todo.todoId" :label="todo.title"
-                @on-change="toggleTodo(todo.todoId)"
-                :label-classes="['flex items-center gap-4', todo.status ? 'text-slate-400 line-through' : 'text-slate-700']" />
-            <BaseButton variant="danger" @on-click="confirmDelete(todo.todoId)">Delete</BaseButton>
-        </li> -->
-    </ul>
+    </TransitionGroup>
+
     <BaseModal v-model="isModalOpen">
         <template #header>
             <span class="text-red-600">Xác nhận xóa</span>

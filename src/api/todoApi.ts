@@ -30,7 +30,6 @@ async function editTodo(id: string, todo: Partial<TodoType>) {
         const res = await http.put<any, TodoType>(`/todos/${id}`, todo);
         return res;
     } catch (err) {
-        console.log(2222)
         throw err;
     }
 }
