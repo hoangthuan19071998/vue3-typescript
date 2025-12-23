@@ -4,7 +4,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router/index'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-
+import { vFocus } from './directives/vFocus'
 const pinia = createPinia()
 
 
@@ -14,9 +14,5 @@ pinia.use(piniaPluginPersistedstate)
 
 app.use(pinia)
 app.use(router)
-app.directive('focus', {
-    mounted: (el) => {
-        el.focus()
-    }
-})
+app.directive('focus', vFocus)
 app.mount('#app')
