@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { defineAsyncComponent } from 'vue';
 import BaseInput from '../components/base/BaseInput.vue';
 import BaseButton from '../components/base/BaseButton.vue';
-import BaseModal from '../components/base/BaseModal.vue';
+const BaseModal = defineAsyncComponent(() =>
+    import('../components/base/BaseModal.vue')
+);
 import TodoItem from '../components/todos/TodoItem.vue';
 import { storeToRefs } from 'pinia';
 import { useTodoStore } from '../stores/todoStore';
@@ -71,7 +74,7 @@ const executeDelete = () => {
     <TransitionGroup v-else name="list" tag="ul" class="space-y-2">
 
         <TodoItem v-for="todo in filteredTodos" :key="todo.todoId" :todoId="todo.todoId" :v-model="todo.status"
-            :title="todo.title" @confirm-delete="confirmDelete" />
+            :title="todo.title" @confirm-delete="confirmDelete" v-memo="[todo.status, todo.title]" />
     </TransitionGroup>
 
     <BaseModal v-model="isModalOpen">
@@ -93,18 +96,12 @@ const executeDelete = () => {
 /* Hiệu ứng cho List Item */
 .list-enter-active,
 .list-leave-active {
-    transition: all 0.4s ease;
+    transition: all 0.5s ease;
 }
 
 .list-enter-from,
 .list-leave-to {
     opacity: 0;
     transform: translateX(30px);
-    /* Trượt sang phải khi xóa */
-}
-
-/* Magic class: Giúp các item còn lại trượt lên mượt mà khi có item bị xóa */
-.list-move {
-    transition: transform 0.4s ease;
 }
 </style>

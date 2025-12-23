@@ -2,6 +2,7 @@
 import BaseButton from '../base/BaseButton.vue';
 import BaseCheckbox from '../base/BaseCheckbox.vue';
 import { useTodoStore } from '../../stores/todoStore';
+
 const store = useTodoStore();
 
 const { toggleTodo } = store;
