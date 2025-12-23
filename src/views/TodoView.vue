@@ -60,7 +60,7 @@ const executeDelete = () => {
 
 <template>
     <div class="flex max-w-2xl items-end gap-3 mx-auto">
-        <BaseInput type="text" label="Add todo" v-model="newTodoTitle" :error="todoTittleErrMsg"
+        <BaseInput :focus=false type="text" label="Add todo" v-model="newTodoTitle" :error="todoTittleErrMsg"
             :on-change="todoTittleErrMsg = ''" />
         <BaseButton @on-click="handleAddTitle" :isLoading="isLoadingButton">Add new todo</BaseButton>
     </div>

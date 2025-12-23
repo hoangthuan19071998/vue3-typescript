@@ -6,7 +6,7 @@
         ]">
             {{ label }}
         </span>
-        <input :type="type" :name="type" :class=inputClasses :placeholder="placeholder" v-model="model"
+        <input v-focus="focus" :type="type" :name="type" :class=inputClasses :placeholder="placeholder" v-model="model"
             :required="required" @change="emit('on-change')" />
         <p v-if="error" class="text-red-500 text-sm mt-1">{{ error }}</p>
     </label>
@@ -19,6 +19,10 @@ const props = defineProps({
     type: {
         type: String as PropType<'text' | 'email' | 'password'>,
         required: true
+    },
+    focus: {
+        type: Boolean,
+        default: false
     },
     required: {
         type: Boolean,
