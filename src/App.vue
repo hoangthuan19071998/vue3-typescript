@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { watchEffect } from 'vue';
 import { RouterView } from 'vue-router';
 import DefaultLayout from './layouts/DefaultLayout.vue';
 import { useLocalStorage } from './composables/useLocalStorage';
@@ -8,7 +9,14 @@ const theme = useLocalStorage('theme', 'light')
 const toggleTheme = () => {
   theme.value = theme.value === 'light' ? 'dark' : 'light';
 }
-
+watchEffect(() => {
+  const root = document.documentElement; // Thẻ <html>
+  if (theme.value === 'dark') {
+    root.classList.add('dark'); // Thêm class 'dark' để kích hoạt biến CSS
+  } else {
+    root.classList.remove('dark');
+  }
+});
 </script>
 
 <template>

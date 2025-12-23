@@ -3,8 +3,8 @@
 </script>
 
 <template>
-    <div class="min-h-screen bg-gray-50 flex flex-col">
-        <header class="bg-white shadow-sm sticky top-0 z-10">
+    <div class="min-h-screen bg-background text-foreground flex flex-col transition-colors duration-300">
+        <header class="bg-surface shadow-sm sticky top-0 z-10 border-b border-border">
             <nav class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
                 <h1 class="text-xl font-bold text-blue-600">VueTodo Pro</h1>
 
@@ -25,7 +25,7 @@
             <slot />
         </main>
 
-        <footer class="bg-gray-200 text-center py-4 text-sm text-gray-500">
+        <footer class="bg-surface text-center py-4 text-sm text-foreground/60 border-t border-border">
             &copy; 2025 Dual-Stack Developer
         </footer>
     </div>
